@@ -80,10 +80,18 @@
             </ul>
 
             <!-- Login and sign up buttons -->
-            <div>
-                <a href="#" class="btn btn-outline-success">Login</a>
-                <a href="#" class="btn btn-outline-secondary">Sign up</a>
-            </div>
+
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-secondary">Logout, {{ user.username }}</button>
+                </form>
+            {% else %}
+                <div>
+                    <a href="{% url 'login' %}" class="btn btn-outline-success">Login</a>
+                    <a href="{% url 'create-user' %}" class="btn btn-outline-secondary">Sign up</a>
+                </div>
+            {% endif %}
 
             <!-- Search form -->
             <form class="d-flex" role="search">

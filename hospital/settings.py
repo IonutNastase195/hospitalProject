@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'doctor.apps.DoctorConfig',
     'department',
     'appointment',
-    'patient'
+    'patient',
+    'userextend'
 ]
 
 MIDDLEWARE = [
