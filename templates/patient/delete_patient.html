@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} Delete - {{ patient }} {% endblock %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6 offset-md-3 gy-5">
+				<div class="card">
+					<div class="card-header">
+						<h3 class="text-center"> Delete - {{ patient }}</h3>
+					</div>
+					<form method="post">
+						
+						{% csrf_token %}
+						<div class="card-body">
+							<p><strong>Full name:</strong>{{ patient }}</p>
+							<p><strong>Email :</strong>{{ patient.user.first_name }}</p>
+							<p><strong>Trainer :</strong>{{ patient.user.email }}</p>
+							<p><strong>Course :</strong>{{ patient.mobile }}</p>
+						</div>
+						<div class="card-footer text-center">
+							<button type="submit" class="btn btn-danger">DELETE</button>
+							<a href="{% url 'list-patient' %}" class="btn btn-secondary">Cancel</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	
+	</div>
+
+{% endblock %}

@@ -8,7 +8,16 @@ class PatientForm(forms.ModelForm):
     class Meta:
         model = Patient
         fields = '__all__'
+        widgets = {
+            # Widgets for Patient model fields
+            'address': TextInput(attrs={'placeholder': 'Enter your address', 'class': 'form-control'}),
+            'mobile': TextInput(attrs={'placeholder': 'Enter your mobile number', 'class': 'form-control'}),
+            'user__username': TextInput(attrs={'placeholder': 'Enter your username', 'class': 'form-control'}),
+            'user__email': EmailInput(attrs={'placeholder': 'Enter your email', 'class': 'form-control'}),
+        }
 
-    widgets = {
-        'first_name': TextInput(attrs={'placeholder': 'Please enter your first name', 'class': 'form-control'}),
-    }
+
+class PatientUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Patient
+        fields = '__all__'

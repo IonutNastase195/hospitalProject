@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} Patient Details {% endblock %}
+{% block content %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6 offset-md-3 gy-5">
+				<div class="card text-center">
+					<div class="card-header">
+						View details
+					</div>
+					<div class="card-body">
+						<h5 class="card-title">{{ patient }}</h5>
+						<p class="card-text">Email: {{ patient.user.first_name }}</p>
+						<p class="card-text">Email: {{ patient.user.last_name }}</p>
+						<a href="{% url 'list-patient' %}" class="btn btn-secondary">Cancel</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

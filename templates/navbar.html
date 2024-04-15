@@ -1,103 +1,98 @@
 <!-- Navigation bar -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <!-- Navbar brand -->
-        <a class="navbar-brand" href="#">Project</a>
-
-        <!-- Navbar toggler button -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Navbar collapse content -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <!-- Home page link -->
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-
-                <!-- Patient dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Patient
-                    </a>
-                    <ul class="dropdown-menu">
-                        <!-- Add patient link -->
-                        <li><a class="dropdown-item" href={% url 'create-patient' %}>Add a new patient</a></li>
-                        <!-- List of patients and patient history links -->
-                        <li><a class="dropdown-item" href="#">List of patients</a></li>
-                        <li><a class="dropdown-item" href="#">Patient history</a></li>
-                    </ul>
-                </li>
-
-                <!-- Doctor dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Doctor
-                    </a>
-                    <ul class="dropdown-menu">
-                        <!-- Add doctor link -->
-                        <li><a class="dropdown-item" href="#">Add a new doctor</a></li>
-                        <!-- List of doctors and doctor schedule links -->
-                        <li><a class="dropdown-item" href="#">List of doctors</a></li>
-                        <li><a class="dropdown-item" href="#">Doctor schedule</a></li>
-                    </ul>
-                </li>
-
-                <!-- Appointment dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Appointment
-                    </a>
-                    <ul class="dropdown-menu">
-                        <!-- Schedule appointment link -->
-                        <li><a class="dropdown-item" href="#">Schedule an appointment</a></li>
-                        <!-- List of appointments and appointment history links -->
-                        <li><a class="dropdown-item" href="#">List of appointments</a></li>
-                        <li><a class="dropdown-item" href="#">Appointment history</a></li>
-                    </ul>
-                </li>
-
-                <!-- Department dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Department
-                    </a>
-                    <ul class="dropdown-menu">
-                        <!-- Add department link -->
-                        <li><a class="dropdown-item" href="#">Add a new department</a></li>
-                        <!-- List of departments and department details links -->
-                        <li><a class="dropdown-item" href="#">List of departments</a></li>
-                        <li><a class="dropdown-item" href="#">Department details</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-            <!-- Login and sign up buttons -->
-
-            {% if user.is_authenticated %}
-                <form method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-outline-secondary">Logout, {{ user.username }}</button>
-                </form>
-            {% else %}
-                <div>
-                    <a href="{% url 'login' %}" class="btn btn-outline-success">Login</a>
-                    <a href="{% url 'create-user' %}" class="btn btn-outline-secondary">Sign up</a>
-                </div>
-            {% endif %}
-
-            <!-- Search form -->
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
+	<div class="container-fluid">
+		<!-- Navbar brand -->
+		<a class="navbar-brand" href={% url 'home_page' %}>Home</a>
+		
+		<!-- Navbar toggler button -->
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+		        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		
+		<!-- Navbar collapse content -->
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<!-- Patient dropdown -->
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+					   aria-expanded="false">
+						Patient
+					</a>
+					<ul class="dropdown-menu">
+						<!-- Add patient link -->
+						<li><a class="dropdown-item" href={% url 'create-patient' %}>Add a new patient</a></li>
+						<!-- List of patients and patient history links -->
+						<li><a class="dropdown-item" href={% url 'list-patient' %}>List of patients</a></li>
+						<li><a class="dropdown-item" href="#">Patient history</a></li>
+					</ul>
+				</li>
+				
+				<!-- Doctor dropdown -->
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+					   aria-expanded="false">
+						Doctor
+					</a>
+					<ul class="dropdown-menu">
+						<!-- Add doctor link -->
+						<li><a class="dropdown-item" href="#">Add a new doctor</a></li>
+						<!-- List of doctors and doctor schedule links -->
+						<li><a class="dropdown-item" href="#">List of doctors</a></li>
+						<li><a class="dropdown-item" href="#">Doctor schedule</a></li>
+					</ul>
+				</li>
+				
+				<!-- Appointment dropdown -->
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+					   aria-expanded="false">
+						Appointment
+					</a>
+					<ul class="dropdown-menu">
+						<!-- Schedule appointment link -->
+						<li><a class="dropdown-item" href="#">Schedule an appointment</a></li>
+						<!-- List of appointments and appointment history links -->
+						<li><a class="dropdown-item" href="#">List of appointments</a></li>
+						<li><a class="dropdown-item" href="#">Appointment history</a></li>
+					</ul>
+				</li>
+				
+				<!-- Department dropdown -->
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+					   aria-expanded="false">
+						Department
+					</a>
+					<ul class="dropdown-menu">
+						<!-- Add department link -->
+						<li><a class="dropdown-item" href="#">Add a new department</a></li>
+						<!-- List of departments and department details links -->
+						<li><a class="dropdown-item" href="#">List of departments</a></li>
+						<li><a class="dropdown-item" href="#">Department details</a></li>
+					</ul>
+				</li>
+			</ul>
+			
+			<!-- Login and sign up buttons -->
+			
+			{% if user.is_authenticated %}
+				<form method="post" action="{% url 'logout' %}">
+					{% csrf_token %}
+					<button type="submit" class="btn btn-outline-secondary">Logout, {{ user.username }}</button>
+				</form>
+			{% else %}
+				<div>
+					<a href="{% url 'login' %}" class="btn btn-outline-success">Login</a>
+					<a href="{% url 'create-user' %}" class="btn btn-outline-secondary">Sign up</a>
+				</div>
+			{% endif %}
+			
+			<!-- Search form -->
+			<form class="d-flex" role="search">
+				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success" type="submit">Search</button>
+			</form>
+		</div>
+	</div>
 </nav>

@@ -3,14 +3,32 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="text-center">Your health our priority!</h1>
-            </div>
-            <div class="col-md-6 offset-md-3 text-center">
-                <img src="{% static 'images/img.png' %}" alt="imagine home">
+<div class="container-fluid">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-12">
+            <h1 class="text-center">Your health our priority!</h1>
+        </div>
+        
+        <div class="col-md-6">
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{% static 'images/hospital.jpg' %}" alt="imagine home" width="800" height="300">
+                    </div>
+                    <!-- Add other carousel items here -->
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
