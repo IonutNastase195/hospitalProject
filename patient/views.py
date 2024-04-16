@@ -22,14 +22,16 @@ class PatientListView(ListView):
     def get_queryset(self):
         return Patient.objects.filter(active=True)
 
-    # def get_context_data(self, **kwargs):
-    #     data = super().get_context_data(**kwargs)
-    #
-    #     patients = Patient.objects.filter(active=True)
-    #     myFilter = PatientFilter(self.request.GET, queryset=patients)
-    #     patients = myFilter.qs
-    #     data['all_patients'] = patients
-    #     data['filter'] = myFilter.form
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+
+        patients = Patient.objects.filter(active=True)
+        myFilter = PatientFilter(self.request.GET, queryset=patients)
+        patients = myFilter.qs
+        data['all_patients'] = patients
+        data['filters'] = myFilter.form
+
+        return data
 
 
 class PatientUpdateView(UpdateView):
