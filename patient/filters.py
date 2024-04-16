@@ -9,6 +9,7 @@ class PatientFilter(django_filters.FilterSet):
                                            widget=forms.TextInput(
                                                attrs={'class': 'form-control',
                                                       'placeholder': 'Please enter first name'}))
+
     last_name = django_filters.CharFilter(field_name='user__last_name', lookup_expr='icontains', label='Last name',
                                           widget=forms.TextInput(
                                               attrs={'class': 'form-control',
