@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import TextInput, EmailInput, Textarea, Select, NumberInput, DateInput
+from django.forms import TextInput, EmailInput
 
 from patient.models import Patient
 
@@ -9,7 +9,6 @@ class PatientForm(forms.ModelForm):
         model = Patient
         fields = '__all__'
         widgets = {
-            # Widgets for Patient model fields
             'address': TextInput(attrs={'placeholder': 'Enter your address', 'class': 'form-control'}),
             'mobile': TextInput(attrs={'placeholder': 'Enter your mobile number', 'class': 'form-control'}),
             'user__username': TextInput(attrs={'placeholder': 'Enter your username', 'class': 'form-control'}),
