@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Doctor Details {% endblock %}
+{% block content %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6 offset-md-3 gy-5">
+				<div class="card text-center">
+					<div class="card-header">
+						View details
+					</div>
+					<div class="card-body">
+						<p class="card-text">First Name: {{ doctor.user.first_name }}</p>
+						<p class="card-text">Last Name: {{ doctor.user.last_name }}</p>
+						<p class="card-text">Email: {{ doctor.user.email }}</p>
+						<p class="card-text">Address: {{ doctor.department }}</p>
+						<p class="card-text">Mobile: {{ doctor.mobile }}</p>
+						<a href="{% url 'list-doctor' %}" class="btn btn-secondary">Cancel</a>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
