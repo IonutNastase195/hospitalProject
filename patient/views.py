@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 
 from patient.filters import PatientFilter
-from patient.forms import PatientForm, PatientUpdateForm
+from patient.forms import PatientForm, PatientUpdateForm, CustomUserCreationForm
 from patient.models import Patient
 
 
@@ -50,3 +51,18 @@ class PatientDeleteView(DeleteView):
 class PatientDetailView(DetailView):
     template_name = 'patient/details_patient.html'
     model = Patient
+
+
+def patient_register_view(request):
+    patient_form = PatientForm()
+    user_form = CustomUserCreationForm()
+    if request.method == 'POST':
+        patient_form = PatientForm(request.POST)
+        user_form = CustomUserCreationForm(request.POST)
+        if patient_form.is_valid() and user_form.is_valid():
+            user = user_form.save()
+            patient = patient_form.save(commit=False)
+            patient.user = user
+            patient.save()
+            return redirect(reverse_lazy('login'))
+    return render(request, 'patient/create_patient.html', {'patient_form': patient_form, 'user_form': user_form})

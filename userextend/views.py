@@ -52,7 +52,6 @@ class UserCreateView(CreateView):
         )
 
         mail.content_subtype = 'html'
-        # mail.send()
 
         # Implementare istoric
         history = (f'A fost adaugat urmatorul user:first_name: {new_user.first_name}, last_name: {new_user.last_name},'

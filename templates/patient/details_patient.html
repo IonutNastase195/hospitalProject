@@ -9,12 +9,14 @@
 						View details
 					</div>
 					<div class="card-body">
-						<h5 class="card-title">{{ patient }}</h5>
-						<p class="card-text">Email: {{ patient.user.first_name }}</p>
-						<p class="card-text">Email: {{ patient.user.last_name }}</p>
+						<p class="card-text">First Name: {{ patient.user.first_name }}</p>
+						<p class="card-text">Last Name: {{ patient.user.last_name }}</p>
+						<p class="card-text">Email: {{ patient.user.email }}</p>
+						<p class="card-text">Address: {{ patient.address }}</p>
+						<p class="card-text">Mobile: {{ patient.mobile }}</p>
 						<a href="{% url 'list-patient' %}" class="btn btn-secondary">Cancel</a>
 					</div>
-
+				
 				</div>
 			</div>
 		</div>

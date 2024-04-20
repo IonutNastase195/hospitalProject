@@ -20,8 +20,6 @@
 						Patient
 					</a>
 					<ul class="dropdown-menu">
-						<!-- Add patient link -->
-						<li><a class="dropdown-item" href={% url 'create-patient' %}>Add a new patient</a></li>
 						<!-- List of patients and patient history links -->
 						<li><a class="dropdown-item" href={% url 'list-patient' %}>List of patients</a></li>
 						<li><a class="dropdown-item" href="#">Patient history</a></li>
@@ -84,7 +82,7 @@
 			{% else %}
 				<div>
 					<a href="{% url 'login' %}" class="btn btn-outline-success">Login</a>
-					<a href="{% url 'create-user' %}" class="btn btn-outline-secondary">Sign up</a>
+					<a href="{% url 'create-patient' %}" class="btn btn-outline-secondary">Sign up</a>
 				</div>
 			{% endif %}
 			
