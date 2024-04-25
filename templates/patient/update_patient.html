@@ -3,26 +3,41 @@
 {% block title %} Update {% endblock %}
 
 {% block content %}
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-6 offset-md-3 gy-5">
-				<div class="card">
-					<div class="card-header">
-						<h3 class="text-center">Update</h3>
-					</div>
-					<form method="post" enctype="multipart/form-data">
-						{% csrf_token %}
-						<div class="card-body">
-							{{ form }}
-						</div>
-						<div class="card-footer text-center">
-							<button type="submit" class="btn btn-success">Update</button>
-							<a href="{% url 'list-patient' %}" class="btn btn-secondary">Cancel</a>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	
-	</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 gy-5">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Update</h3>
+                </div>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        {% for field in user_update_form %}
+                            {% if field.name != 'password' %}
+                                <div class="form-group">
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                    {{ field }}
+                                    {% if field.help_text %}
+                                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% for field in patient_update_form %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-success">Update</button>
+                        <a href="{% url 'list-patient' %}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

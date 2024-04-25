@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} History of Patients Records {% endblock %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6 offset-md-3">
+				<h2 class="text-center">History of Patients Records</h2>
+				<table class="table table-striped">
+					<thead>
+					<tr>
+						<th>No.</th>
+						<th>Message</th>
+						<th>Created At</th>
+					</tr>
+					</thead>
+					<tbody>
+					{% for history in all_patient_history %}
+						<tr>
+							<td>{{ forloop.counter }}</td>
+							<td>{{ history.message }}</td>
+							<td>{{ history.created_at }}</td>
+						</tr>
+					{% empty %}
+						<tr>
+							<td colspan="4">No history available.</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}

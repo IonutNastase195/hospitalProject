@@ -11,3 +11,13 @@ class Patient(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class HistoryPatient(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    message = models.TextField(max_length=500)
+    active = models.BooleanField(default=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self

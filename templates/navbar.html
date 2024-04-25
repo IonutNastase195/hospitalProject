@@ -21,8 +21,9 @@
 					</a>
 					<ul class="dropdown-menu">
 						<!-- List of patients and patient history links -->
+						<li><a class="dropdown-item" href={% url 'create-patient' %}>Create new Patient</a></li>
 						<li><a class="dropdown-item" href={% url 'list-patient' %}>List of patients</a></li>
-						<li><a class="dropdown-item" href="#">Patient history</a></li>
+						<li><a class="dropdown-item" href={% url 'history-patient' %}>Patient log</a></li>
 					</ul>
 				</li>
 				
@@ -49,9 +50,11 @@
 					</a>
 					<ul class="dropdown-menu">
 						<!-- Schedule appointment link -->
-						<li><a class="dropdown-item" href="#">Schedule an appointment</a></li>
-						<!-- List of appointments and appointment history links -->
-						<li><a class="dropdown-item" href="#">List of appointments</a></li>
+						<li><a class="dropdown-item" href="{% url 'create-appointment' %}">Schedule an appointment</a>
+						</li>
+						<!-- List of appointments link -->
+						<li><a class="dropdown-item" href="{% url 'list-appointment' %}">List of appointments</a></li>
+						<!-- Appointment history link -->
 						<li><a class="dropdown-item" href="#">Appointment history</a></li>
 					</ul>
 				</li>

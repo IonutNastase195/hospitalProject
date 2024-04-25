@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} List of Appointments {% endblock %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="card">
+					<div class="card-header">
+						<h3 class="text-center">Filters</h3>
+					</div>
+					<form method="get">
+						<div class="card-body">
+							{{ filters }}
+						</div>
+						<div class="card-footer text-center">
+							<button type="submit" class="btn btn-outline-success">Search</button>
+							<a href="{% url 'list-appointment' %}" class="btn btn-outline-danger">Reset</a>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+			<div class="col-md-10">
+				{% if all_appointments %}
+					<table class="table">
+						<thead>
+						<tr>
+							<th>No.</th>
+							<th>Patient First Name</th>
+							<th>Patient Symptoms</th>
+							<th>Doctor First Name</th>
+							<th>Time Scheduled</th>
+							<th>More Details</th>
+							<th>Confirmation</th>
+						</tr>
+						</thead>
+						<tbody>
+						{% for appointment in all_appointments %}
+							<tr>
+								<td>{{ forloop.counter }}</td>
+								<td>{{ appointment.patient.user.first_name }} </td>
+								<td>{{ appointment.symptoms }} </td>
+								<td>{{ appointment.doctor.user.first_name }} </td>
+								<td>{{ appointment.duration }} </td>
+								<td>{{ appointment.description }} </td>
+								<td>{% if appointment.confirmed %}Yes{% else %}No{% endif %}</td>
+								
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-secondary dropdown-toggle" type="button"
+										        data-bs-toggle="dropdown" aria-expanded="false">
+											More actions
+										</button>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item"
+											       href={% url 'update-appointment' appointment.id %}>Update</a></li>
+											<li><a class="dropdown-item"
+											       href="{% url 'delete-appointment' appointment.id %}">Delete</a></li>
+											<li><a class="dropdown-item"
+											       href={% url 'detail-appointment' appointment.id %}>Details</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				{% else %}
+					<p>No appointments found.</p>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

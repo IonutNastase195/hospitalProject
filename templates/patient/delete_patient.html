@@ -1,33 +1,39 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %} Delete - {{ patient }} {% endblock %}
+{% block title %} Delete - {{ patient.user.first_name }} {{ patient.user.last_name }} {% endblock %}
 
 {% block content %}
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-6 offset-md-3 gy-5">
-				<div class="card">
-					<div class="card-header">
-						<h3 class="text-center"> Delete - {{ patient }}</h3>
-					</div>
-					<form method="post">
-						
-						{% csrf_token %}
-						<div class="card-body">
-							<p><strong>Full name:</strong>{{ patient }}</p>
-							<p><strong>Email :</strong>{{ patient.user.first_name }}</p>
-							<p><strong>Trainer :</strong>{{ patient.user.email }}</p>
-							<p><strong>Course :</strong>{{ patient.mobile }}</p>
-						</div>
-						<div class="card-footer text-center">
-							<button type="submit" class="btn btn-danger">DELETE</button>
-							<a href="{% url 'list-patient' %}" class="btn btn-secondary">Cancel</a>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	
-	</div>
-
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="text-center">Delete - {{ patient.user.first_name }} {{ patient.user.last_name }}</h3>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            {% if patient.profile_pic %}
+                                <img src="{{ patient.profile_pic.url }}" alt="Profile Picture" class="img-fluid rounded-circle" style="max-width: 150px;">
+                            {% else %}
+                                <img src="{% static 'images/img.png' %}" alt="Default Profile Picture" class="img-fluid rounded-circle" style="max-width: 150px;">
+                            {% endif %}
+                        </div>
+                        <p><strong>First Name:</strong> {{ patient.user.first_name }}</p>
+                        <p><strong>Last Name:</strong> {{ patient.user.last_name }}</p>
+                        <p><strong>Email:</strong> {{ patient.user.email }}</p>
+                        <p><strong>Username:</strong> {{ patient.user.username }}</p>
+                        <p><strong>Mobile:</strong> {{ patient.mobile }}</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-danger">DELETE</button>
+                        <a href="{% url 'list-patient' %}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

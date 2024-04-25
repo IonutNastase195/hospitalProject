@@ -1,5 +1,6 @@
 import django_filters
 from django import forms
+
 from doctor.models import Doctor
 
 
@@ -17,12 +18,6 @@ class DoctorFilter(django_filters.FilterSet):
                                       widget=forms.TextInput(
                                           attrs={'class': 'form-control',
                                                  'placeholder': 'Please enter email'}))
-
-    # department = django_filters.CharFilter(field_name='icontains', lookup_expr='icontains', label='department',
-    #                                        widget=forms.ChoiceField(
-    #                                            attrs={'class': 'form-control'
-    #                                                , 'placeholder': 'Choose a department'}
-    #                                        ))
 
     address = django_filters.CharFilter(lookup_expr='icontains', label='Address',
                                         widget=forms.TextInput(

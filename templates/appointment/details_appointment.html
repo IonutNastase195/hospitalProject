@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} Appointment {% endblock %}
+{% block content %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6 offset-md-3 gy-5">
+				<div class="card text-center">
+					<div class="card-header">
+						View details
+					</div>
+					<div class="card-body">
+						<p class="card-text">Patient First Name: {{ appointment.patient.user.first_name }}</p>
+						<p class="card-text">Patient Last Name: {{ appointment.patient.user.last_name }}</p>
+						<p class="card-text">Patient Last Name: {{ appointment.patient.user.email }}</p>
+						<p class="card-text">Patient Last Name: {{ appointment.doctor.user.first_name }}</p>
+						<p class="card-text">Patient Last Name: {{ appointment.doctor.user.last_name }}</p>
+						<p class="card-text">Patient Last Name: {{ appointment.symptoms }}</p>
+						<p class="card-text">Patient Last Name: {{ appointment.duration }}</p>
+						<p class="card-text">Patient Last Name: {{ appointment.description }}</p>
+						<p class="card-text">Patient Last Name: {{ appointment.confirmed }}</p>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
