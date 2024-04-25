@@ -13,7 +13,8 @@ class PatientForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'address': TextInput(attrs={'placeholder': 'Enter your address', 'class': 'form-control'}),
-            'mobile': TextInput(attrs={'placeholder': 'Enter your mobile number', 'class': 'form-control'})
+            'mobile': TextInput(attrs={'placeholder': 'Enter your mobile number', 'class': 'form-control'}),
+            'profile_pic': forms.ClearableFileInput(attrs={'class': 'form-control'})
         }
 
 

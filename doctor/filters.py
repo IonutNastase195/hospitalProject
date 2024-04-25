@@ -1,6 +1,7 @@
 import django_filters
 from django import forms
 
+from department.models import Department
 from doctor.models import Doctor
 
 
@@ -27,6 +28,9 @@ class DoctorFilter(django_filters.FilterSet):
                                        widget=forms.TextInput(
                                            attrs={'class': 'form-control',
                                                   'placeholder': 'Please enter mobile'}))
+    department = django_filters.ModelChoiceFilter(queryset=Department.objects.order_by('name').distinct(),
+                                                  label='Department', empty_label='All Departments',
+                                                  widget=forms.Select(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Doctor

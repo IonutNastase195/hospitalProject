@@ -16,12 +16,14 @@ class DoctorCreateForm(forms.ModelForm):
         }
 
 
-class DoctorUpdateForm(forms.ModelForm):
+class DoctorForm(forms.ModelForm):
     class Meta:
         model = Doctor
+        exclude = ['user', 'active']
         fields = '__all__'
-
-    widgets = {
-        'address': TextInput(attrs={'placeholder': 'Enter your address', 'class': 'form-control'}),
-        'mobile': TextInput(attrs={'placeholder': 'Enter your mobile number', 'class': 'form-control'}),
-    }
+        widgets = {
+            'address': forms.TextInput(attrs={'placeholder': 'Enter your address', 'class': 'form-control'}),
+            'mobile': forms.TextInput(attrs={'placeholder': 'Enter your mobile number', 'class': 'form-control'}),
+            'department': forms.Select(attrs={'class': 'form-select'}),
+            'profile_pic': forms.ClearableFileInput(attrs={'class': 'form-control'})
+        }
