@@ -6,11 +6,3 @@ class Department(models.Model):
 
     def __str__(self):
         return self.name
-
-# DEPARTMENTS = [
-#     ('cardiologist', 'Cardiologist'),
-#     ('dermatologists', 'Dermatologists'),
-#     ('emergency specialists', 'Emergency Specialists'),
-#     ('allergists', 'Allergists'),
-#     ('anesthesiologists', 'Anesthesiologists')
-# ]

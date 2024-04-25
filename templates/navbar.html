@@ -67,10 +67,10 @@
 					</a>
 					<ul class="dropdown-menu">
 						<!-- Add department link -->
-						<li><a class="dropdown-item" href="#">Add a new department</a></li>
+						<li><a class="dropdown-item" href={% url 'create-department' %}>Add a new department</a></li>
 						<!-- List of departments and department details links -->
-						<li><a class="dropdown-item" href="#">List of departments</a></li>
-						<li><a class="dropdown-item" href="#">Department details</a></li>
+						<li><a class="dropdown-item" href={% url 'list-department' %}>List of departments</a></li>
+											
 					</ul>
 				</li>
 			</ul>
