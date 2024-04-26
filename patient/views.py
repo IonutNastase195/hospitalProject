@@ -1,16 +1,17 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.db.models.functions import datetime
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
+from django.views.generic import ListView, DeleteView, DetailView
 
 from patient.filters import PatientFilter
 from patient.forms import PatientForm, CustomUserCreationForm, CustomUserUpdateForm
 from patient.models import Patient, HistoryPatient
 
 
-class PatientListView(ListView):
+class PatientListView(LoginRequiredMixin, ListView):
     model = Patient
     template_name = 'patient/list_patients.html'
     context_object_name = 'all_patients'
@@ -30,13 +31,13 @@ class PatientListView(ListView):
         return data
 
 
-class PatientDeleteView(DeleteView):
+class PatientDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'patient/delete_patient.html'
     model = Patient
     success_url = reverse_lazy('list-patient')
 
 
-class PatientDetailView(DetailView):
+class PatientDetailView(LoginRequiredMixin, DetailView):
     template_name = 'patient/details_patient.html'
     model = Patient
 
@@ -64,7 +65,7 @@ def patient_register_view(request):
                   {'patient_form': patient_form, 'user_form': user_form})
 
 
-class HistoryPatientListView(ListView):
+class HistoryPatientListView(LoginRequiredMixin, ListView):
     template_name = 'patient/history_patient.html'
     model = HistoryPatient
     context_object_name = 'all_patient_history'
@@ -73,6 +74,7 @@ class HistoryPatientListView(ListView):
         return HistoryPatient.objects.filter()
 
 
+@login_required
 def update_patient_view(request, pk):
     patient = Patient.objects.get(pk=pk)
     user = patient.user

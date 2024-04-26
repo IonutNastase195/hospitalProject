@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Doctor Schedule{% endblock %}
+
+{% block content %}
+    <h1>Doctor Schedule</h1>
+    <ul>
+        {% for slot in doctor_schedule %}
+            <li class="{% if slot.status == 'available' %}available{% else %}busy{% endif %}">
+                {{ slot.date }} {{ slot.start_time }} - {{ slot.end_time }}: {{ slot.status }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

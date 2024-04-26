@@ -13,11 +13,11 @@
 		<!-- Navbar collapse content -->
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<!-- Patient dropdown -->
+				<!-- Patients dropdown -->
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
 					   aria-expanded="false">
-						Patient
+						Patients
 					</a>
 					<ul class="dropdown-menu">
 						<!-- List of patients and patient history links -->
@@ -27,26 +27,25 @@
 					</ul>
 				</li>
 				
-				<!-- Doctor dropdown -->
+				<!-- Doctors dropdown -->
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
 					   aria-expanded="false">
-						Doctor
+						Doctors
 					</a>
 					<ul class="dropdown-menu">
 						<!-- Add doctor link -->
 						<li><a class="dropdown-item" href={% url 'create-doctor' %}>Add a new doctor</a></li>
 						<!-- List of doctors and doctor schedule links -->
 						<li><a class="dropdown-item" href={% url 'list-doctor' %}>List of doctors</a></li>
-						<li><a class="dropdown-item" href="#">Doctor schedule</a></li>
 					</ul>
 				</li>
 				
-				<!-- Appointment dropdown -->
+				<!-- Appointments dropdown -->
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
 					   aria-expanded="false">
-						Appointment
+						Appointments
 					</a>
 					<ul class="dropdown-menu">
 						<!-- Schedule appointment link -->
@@ -59,18 +58,18 @@
 					</ul>
 				</li>
 				
-				<!-- Department dropdown -->
+				<!-- Departments dropdown -->
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
 					   aria-expanded="false">
-						Department
+						Departments
 					</a>
 					<ul class="dropdown-menu">
 						<!-- Add department link -->
 						<li><a class="dropdown-item" href={% url 'create-department' %}>Add a new department</a></li>
 						<!-- List of departments and department details links -->
 						<li><a class="dropdown-item" href={% url 'list-department' %}>List of departments</a></li>
-											
+					
 					</ul>
 				</li>
 			</ul>

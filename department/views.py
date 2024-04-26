@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 
@@ -6,14 +6,14 @@ from department.forms import DepartmentCreateForm, DepartmentUpdateForm
 from department.models import Department
 
 
-class DepartmentCreateView(CreateView):
+class DepartmentCreateView(LoginRequiredMixin, CreateView):
     template_name = 'department/create_department.html'
     model = Department
     form_class = DepartmentCreateForm
     success_url = reverse_lazy('list_department')
 
 
-class DepartmentListView(ListView):
+class DepartmentListView(LoginRequiredMixin, ListView):
     template_name = 'department/list_department.html'
     context_object_name = 'all_departments'
 
@@ -28,19 +28,19 @@ class DepartmentListView(ListView):
         return data
 
 
-class DepartmentUpdateView(UpdateView):
+class DepartmentUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'department/update_department.html'
     model = Department
     form_class = DepartmentUpdateForm
     success_url = reverse_lazy('list_department')
 
 
-class DepartmentDeleteView(DeleteView):
+class DepartmentDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'department/delete_department.html'
     model = Department
     success_url = reverse_lazy('list_department')
 
 
-class DepartmentDetailView(DetailView):
+class DepartmentDetailView(LoginRequiredMixin, DetailView):
     template_name = 'department/details_department.html'
     model = Department

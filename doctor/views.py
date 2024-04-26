@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, UpdateView, DeleteView, DetailView, CreateView
 
@@ -8,21 +10,7 @@ from doctor.models import Doctor
 from patient.forms import CustomUserCreationForm, CustomUserUpdateForm
 
 
-class DoctorCreateView(CreateView):
-    template_name = 'doctor/create_doctor.html'
-    model = Doctor
-    form_class = DoctorCreateForm
-    success_url = reverse_lazy('home_page')
-
-    def form_valid(self, form):
-        instance = form.save(commit=False)
-        instance.first_name = instance.first_name.title()
-        instance.last_name = instance.last_name.title()
-        instance.save()
-        return super().form_valid(form)
-
-
-class DoctorListView(ListView):
+class DoctorListView(LoginRequiredMixin, ListView):
     model = Doctor
     template_name = 'doctor/list_doctors.html'
     context_object_name = 'all_doctors'
@@ -42,24 +30,32 @@ class DoctorListView(ListView):
         return data
 
 
-class DoctorUpdateView(UpdateView):
+class DoctorDeleteView(LoginRequiredMixin, DeleteView):
+    template_name = 'doctor/delete_doctor.html'
+    model = Doctor
+    success_url = reverse_lazy('list-doctor')
+
+
+class DoctorDetailView(LoginRequiredMixin, DetailView):
+    template_name = 'doctor/details_doctor.html'
+    model = Doctor
+
+
+class DoctorCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'doctor/create_doctor.html'
+    form_class = DoctorCreateForm
+    model = Doctor
+    success_url = reverse_lazy('list-doctor')
+
+
+class DoctorUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'doctor/update_doctor.html'
     model = Doctor
     form_class = DoctorForm
     success_url = reverse_lazy('list-doctor')
 
 
-class DoctorDeleteView(DeleteView):
-    template_name = 'doctor/delete_doctor.html'
-    model = Doctor
-    success_url = reverse_lazy('list-doctor')
-
-
-class DoctorDetailView(DetailView):
-    template_name = 'doctor/details_doctor.html'
-    model = Doctor
-
-
+@login_required
 def doctor_register_view(request):
     doctor_form = DoctorCreateForm()
     user_form = CustomUserCreationForm()
@@ -75,6 +71,7 @@ def doctor_register_view(request):
     return render(request, 'doctor/create_doctor.html', {'doctor_form': doctor_form, 'user_form': user_form})
 
 
+@login_required
 def update_doctor_view(request, pk):
     doctor = Doctor.objects.get(pk=pk)
     user = doctor.user
