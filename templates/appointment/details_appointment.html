@@ -11,13 +11,13 @@
 					<div class="card-body">
 						<p class="card-text">Patient First Name: {{ appointment.patient.user.first_name }}</p>
 						<p class="card-text">Patient Last Name: {{ appointment.patient.user.last_name }}</p>
-						<p class="card-text">Patient Last Name: {{ appointment.patient.user.email }}</p>
-						<p class="card-text">Patient Last Name: {{ appointment.doctor.user.first_name }}</p>
-						<p class="card-text">Patient Last Name: {{ appointment.doctor.user.last_name }}</p>
-						<p class="card-text">Patient Last Name: {{ appointment.symptoms }}</p>
-						<p class="card-text">Patient Last Name: {{ appointment.duration }}</p>
-						<p class="card-text">Patient Last Name: {{ appointment.description }}</p>
-						<p class="card-text">Patient Last Name: {{ appointment.confirmed }}</p>
+						<p class="card-text">Patient email: {{ appointment.patient.user.email }}</p>
+						<p class="card-text">Doctor First Name: {{ appointment.doctor.user.first_name }}</p>
+						<p class="card-text">Doctor Last Name: {{ appointment.doctor.user.last_name }}</p>
+						<p class="card-text">Title: {{ appointment.symptoms }}</p>
+						<p class="card-text">Patient Symptoms: {{ appointment.description }}</p>
+						<p class="card-text">Time Scheduled: {{ appointment.duration }}</p>
+						<p class="card-text">Confirmed: {{ appointment.confirmed }}</p>
 					</div>
 				
 				</div>

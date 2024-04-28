@@ -9,10 +9,11 @@ class Appointment(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, null=True)
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, null=True)
     symptoms = models.CharField(max_length=100, null=False)
-    appointment_date = models.DateTimeField(default=timezone.now)
-    duration = models.DurationField(default=timedelta(minutes=30))
+    datetime_from = models.DateTimeField(default=timezone.now)
+    datetime_to = models.DateTimeField(default=timezone.now)
+    # duration = models.DurationField(default=timedelta(minutes=30))
     description = models.TextField(max_length=500)
     confirmed = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Appointment for {self.patient} with {self.doctor} on {self.appointment_date}"
+        return f"Appointment for {self.patient} with {self.doctor} on {self.datetime_from}"

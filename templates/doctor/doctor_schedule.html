@@ -1,13 +1,92 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}Doctor Schedule{% endblock %}
 
 {% block content %}
-    <h1>Doctor Schedule</h1>
-    <ul>
-        {% for slot in doctor_schedule %}
-            <li class="{% if slot.status == 'available' %}available{% else %}busy{% endif %}">
-                {{ slot.date }} {{ slot.start_time }} - {{ slot.end_time }}: {{ slot.status }}
-            </li>
-        {% endfor %}
-    </ul>
+	<h2 class="text-center" id="header-text">Schedule for {{ doctor }}</h2>
+	<div class="row row-cols-8">
+		<div class="col">
+			<h4>Time</h4>
+			{% for d in calendar_data.header %}
+				<div style="margin-top: {{ d.top }}px !important; height: {{ d.height }}px !important;"
+				     class="d-flex">{{ d.value }}</div>
+			{% endfor %}
+		</div>
+		{% for date, data in calendar_data.items %}
+			<div class="col">
+				<h4>{{ date|date:"D" }}</h4>
+				{% for appointment in data.appointments %}
+					<div style="width:75px !important; height: {{ appointment.height }}px !important; margin-top:{{ appointment.top }}px !important;"
+					     class="bg-dark-subtle">
+						<a href="{% url 'detail-appointment' appointment.pk %}" class="btn m-0 p-0">
+							{{ appointment.patient.user.first_name }}
+							{{ appointment.patient.user.last_name }}
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}
+
+{#{% extends 'base.html' %}#}
+{#{% load static %}#}
+{##}
+{#{% block title %}Doctor Schedule{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#	<h2 class="text-center" id="header-text">Schedule for {{ doctor }}</h2>#}
+{#	<div class="row row-cols-7">#}
+{#		#}
+{#		<div class="col">#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#		</div>#}
+{#		<div class="col">#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important; margin-top: 125px!important; background-color: #cc000044">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#		</div>#}
+{#		<div class="col">#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#		</div>#}
+{#		<div class="col">#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#		</div>#}
+{#		<div class="col">#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#		</div>#}
+{#		<div class="col">#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#			<div style="height: 50px!important;">abc</div>#}
+{#		</div>#}
+{#	#}
+{#	</div>#}
+{#{% endblock %}#}
