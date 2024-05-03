@@ -7,15 +7,22 @@
 		<div class="row">
 			<div class="col-md-6 offset-md-3 gy-5">
 				<div class="card">
-					<div class="card-header">
-						<h3 class="text-center"> Delete - {{ appointment }}</h3>
-					</div>
 					<form method="post">
-						
 						{% csrf_token %}
+						<div class="card-header">
+							<h3 class="text-center"> Delete - {{ appointment }}</h3>
+						</div>
 						<div class="card-body">
-							<p><strong>Appointment:</strong>{{ appointment }}</p>
-						
+							<p>
+								<strong>Patient:</strong> {{ appointment.patient.user.first_name }} {{ appointment.patient.user.last_name }}
+							</p>
+							<p>
+								<strong>Doctor:</strong> {{ appointment.doctor.user.first_name }} {{ appointment.doctor.user.last_name }}
+							</p>
+							<p><strong>Date and Time:</strong> {{ appointment.datetime_from|date:'Y-m-d H:i' }}
+								to {{ appointment.datetime_to|date:'Y-m-d H:i' }}</p>
+							<p><strong>Symptoms:</strong> {{ appointment.symptoms }}</p>
+							<p><strong>Doctor Prescription:</strong> {{ appointment.description }}</p>
 						</div>
 						<div class="card-footer text-center">
 							<button type="submit" class="btn btn-danger">DELETE</button>
@@ -25,7 +32,5 @@
 				</div>
 			</div>
 		</div>
-	
 	</div>
-
 {% endblock %}

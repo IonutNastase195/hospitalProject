@@ -3,82 +3,78 @@
 {% block title %} List of Doctors {% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2 gy-3">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="text-center mb-0">Filters</h3>
-                    </div>
-                    <form method="get" class="p-2">
-                        <div class="card-body">
-                            {{ filters }}
-                        </div>
-                        <div class="card-footer text-center">
-                            <button type="submit" class="btn btn-success">Search</button>
-                            <a href="{% url 'list-doctor' %}" class="btn btn-danger ml-2">Reset</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-md-10 gy-2">
-                {% if all_doctors %}
-                    <table class="table table-striped mt-3">
-                        <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Profile Picture</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Address</th>
-                            <th>Mobile</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for doctor in all_doctors %}
-                            <tr>
-                                <td>{{ forloop.counter }}</td>
-                                <td>
-                                    {% if doctor.profile_pic %}
-                                        <img src="{{ doctor.profile_pic.url }}" alt="Profile Picture" width="60"
-                                             height="60">
-                                    {% else %}
-                                        <img src="{% static 'images/img.png' %}" alt="Profile Picture" width="60"
-                                             height="60">
-                                    {% endif %}
-                                </td>
-                                <td>{{ doctor.user.first_name }}</td>
-                                <td>{{ doctor.user.last_name }}</td>
-                                <td>{{ doctor.user.email }}</td>
-                                <td>{{ doctor.address }}</td>
-                                <td>{{ doctor.mobile }}</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                            More actions
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item"
-                                                   href={% url 'update-doctor' doctor.id %}>Update</a></li>
-                                            <li><a class="dropdown-item"
-                                                   href="{% url 'delete-doctor' doctor.id %}">Delete</a></li>
-                                            <li><a class="dropdown-item"
-                                                   href={% url 'detail-doctor' doctor.id %}>Details</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                {% else %}
-                    <p>No doctors found.</p>
-                {% endif %}
-            </div>
-        </div>
-    </div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2 gy-3">
+				<div class="card">
+					<div class="card-header bg-primary text-white">
+						<h3 class="text-center mb-0">Filters</h3>
+					</div>
+					<form method="get" class="p-2">
+						<div class="card-body">
+							{{ filters }}
+						</div>
+						<div class="card-footer text-center">
+							<button type="submit" class="btn btn-success">Search</button>
+							<a href="{% url 'list-doctor' %}" class="btn btn-danger ml-2">Reset</a>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+			<div class="col-md-10 gy-2">
+				{% if all_doctors %}
+					<table class="table table-striped mt-3">
+						<thead>
+						<tr>
+							<th>No.</th>
+							<th>Profile Picture</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Address</th>
+							<th>Mobile</th>
+							<th>Actions</th>
+						</tr>
+						</thead>
+						<tbody>
+						{% for doctor in all_doctors %}
+							<tr>
+								<td>{{ forloop.counter }}</td>
+								<td>
+									{% if doctor.profile_pic %}
+										<img src="{{ doctor.profile_pic.url }}" alt="Profile Picture" width="60"
+										     height="60">
+									{% else %}
+										<img src="{% static 'images/img.png' %}" alt="Profile Picture" width="60"
+										     height="60">
+									{% endif %}
+								</td>
+								<td>{{ doctor.user.first_name }}</td>
+								<td>{{ doctor.user.last_name }}</td>
+								<td>{{ doctor.user.email }}</td>
+								<td>{{ doctor.address }}</td>
+								<td>{{ doctor.mobile }}</td>
+							
+								<td>
+									<div class="btn-group" role="group">
+										<a href="{% url 'update-doctor' doctor.id %}" class="btn btn-warning"
+										   role="button">Update</a>
+										<a href="{% url 'detail-doctor' doctor.id %}" class="btn btn-info"
+										   role="button">Details</a>
+										<a href="{% url 'delete-doctor' doctor.id %}" class="btn btn-danger"
+										   role="button">Delete</a>
+									</div>
+								</td>
+							
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				{% else %}
+					<p>No doctors found.</p>
+				{% endif %}
+			</div>
+		</div>
+	</div>
 {% endblock %}

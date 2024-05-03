@@ -31,8 +31,9 @@
 							<th>Patient First Name</th>
 							<th>Patient Symptoms</th>
 							<th>Doctor First Name</th>
-							<th>Time Scheduled</th>
-							<th>More Details</th>
+							<th>From</th>
+							<th>To</th>
+							<th>Doctor Prescription</th>
 							<th>Confirmation</th>
 						</tr>
 						</thead>
@@ -43,24 +44,19 @@
 								<td>{{ appointment.patient.user.first_name }} </td>
 								<td>{{ appointment.symptoms }} </td>
 								<td>{{ appointment.doctor.user.first_name }} </td>
-								<td>{{ appointment.duration }} </td>
+								<td>{{ appointment.datetime_from }} </td>
+								<td>{{ appointment.datetime_to }} </td>
 								<td>{{ appointment.description }} </td>
 								<td>{% if appointment.confirmed %}Yes{% else %}No{% endif %}</td>
 								
-								<td>
-									<div class="dropdown">
-										<button class="btn btn-secondary dropdown-toggle" type="button"
-										        data-bs-toggle="dropdown" aria-expanded="false">
-											More actions
-										</button>
-										<ul class="dropdown-menu">
-											<li><a class="dropdown-item"
-											       href={% url 'update-appointment' appointment.id %}>Update</a></li>
-											<li><a class="dropdown-item"
-											       href="{% url 'delete-appointment' appointment.id %}">Delete</a></li>
-											<li><a class="dropdown-item"
-											       href={% url 'detail-appointment' appointment.id %}>Details</a></li>
-										</ul>
+								<td>    <!-- Action Buttons -->
+									<div class="btn-group" role="group">
+										<a href="{% url 'update-appointment' appointment.id %}" class="btn btn-warning"
+										   role="button">Update</a>
+										<a href="{% url 'detail-appointment' appointment.id %}" class="btn btn-info"
+										   role="button">Details</a>
+										<a href="{% url 'delete-appointment' appointment.id %}" class="btn btn-danger"
+										   role="button">Delete</a>
 									</div>
 								</td>
 							</tr>

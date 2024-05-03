@@ -9,7 +9,7 @@
 					<div class="card-header bg-primary text-white">
 						<h5 class="mb-0">View Patient Details</h5>
 					</div>
-					<div class="card-body text-center"> <!-- Added text-center class here -->
+					<div class="card-body text-center"> 
 						<div class="mb-3">
 							{% if patient.profile_pic %}
 								<img src="{{ patient.profile_pic.url }}" alt="Profile Picture"
@@ -22,7 +22,7 @@
 						<p class="card-text">First Name: {{ doctor.user.first_name }}</p>
 						<p class="card-text">Last Name: {{ doctor.user.last_name }}</p>
 						<p class="card-text">Email: {{ doctor.user.email }}</p>
-						<p class="card-text">Address: {{ doctor.department }}</p>
+						<p class="card-text">Department: {{ doctor.department }}</p>
 						<p class="card-text">Mobile: {{ doctor.mobile }}</p>
 						<a href="{% url 'list-doctor' %}" class="btn btn-secondary">Cancel</a>
 					</div>

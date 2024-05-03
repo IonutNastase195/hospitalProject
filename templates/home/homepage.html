@@ -18,6 +18,7 @@
 						<h5 class="card-title">Emergency Care</h5>
 						<p class="card-text">Our Emergency Care department is equipped to handle medical emergencies
 							24/7.</p>
+						<a href="emergency_care.html">Learn More</a>
 					</div>
 				</div>
 				<div class="card mt-3">
@@ -25,6 +26,7 @@
 						<h5 class="card-title">Inpatient Care</h5>
 						<p class="card-text">For patients requiring hospitalization, our Inpatient Care department
 							provides comprehensive medical services.</p>
+						<a href="inpatient_care.html">Learn More</a>
 					</div>
 				</div>
 				<div class="card mt-3">
@@ -32,59 +34,12 @@
 						<h5 class="card-title">Outpatient Care</h5>
 						<p class="card-text">Outpatient Care offers medical services to patients who do not require
 							overnight stay.</p>
+						<a href="outpatient_care.html">Learn More</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-	<!-- Footer -->
-	<footer class="text-center text-muted">
-		<div class="container">
-			<p>Connect with us:</p>
-			<div>
-				<a href="https://www.facebook.com/" class="me-4 text-reset">Facebook</a>
-				<a href="https://twitter.com/" class="me-4 text-reset">Twitter</a>
-				<a href="https://www.instagram.com/" class="me-4 text-reset">Instagram</a>
-				<a href="https://www.linkedin.com/" class="me-4 text-reset">LinkedIn</a>
-			</div>
-		</div>
-		<div class="container mt-5">
-			<div class="row">
-				<div class="col-md-4">
-					<h6 class="fw-bold">Hospital Information</h6>
-					<p>Welcome to our Hospital Management System. We aim to provide the best healthcare services.</p>
-				</div>
-				<div class="col-md-3">
-					<h6 class="fw-bold">Services</h6>
-					<p><a href="#" class="text-reset">Emergency Care</a></p>
-					<p><a href="#" class="text-reset">Inpatient Care</a></p>
-					<p><a href="#" class="text-reset">Outpatient Care</a></p>
-				</div>
-				<div class="col-md-3">
-					<h6 class="fw-bold">Quick Links</h6>
-					<p><a href="#" class="text-reset">Doctors</a></p>
-					<p><a href="#" class="text-reset">Appointments</a></p>
-					<p><a href="#" class="text-reset">Services</a></p>
-				</div>
-				<div class="col-md-2">
-					<h6 class="fw-bold">Contact</h6>
-					<p><i class="fas fa-map-marker-alt me-3"></i> 123 Hospital St, City, Country</p>
-					<p><i class="fas fa-envelope me-3"></i> info@hospital.com</p>
-					<p><i class="fas fa-phone me-3"></i> +1234567890</p>
-				</div>
-			</div>
-		</div>
-		<div class="container mt-5 mb-4">
-			<div id="map" style="height: 300px;"></div>
-			<script src="{% static 'js/scripts.js' %}"></script>
-			<script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
-		</div>
-		<div class="container mt-5 mb-4">
-			<p>© 2024 Hospital Management System. All rights reserved.</p>
-		</div>
-	</footer>
-	<!-- Footer -->
 
-
+	{% include 'footer.html' %}
 {% endblock %}

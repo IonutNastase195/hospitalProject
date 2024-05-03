@@ -27,7 +27,7 @@
 						<thead>
 						<tr>
 							<th>No.</th>
-							<th>Name</th>							
+							<th>Name</th>
 						</tr>
 						</thead>
 						<tbody>
@@ -35,21 +35,16 @@
 							<tr>
 								<td>{{ forloop.counter }}</td>
 								<td>{{ department.name }}</td>
-{#								<td>{{ department.description }}</td>#}
-								<td>
-									<div class="dropdown">
-										<button class="btn btn-secondary dropdown-toggle" type="button"
-										        data-bs-toggle="dropdown" aria-expanded="false">
-											More actions
-										</button>
-										<ul class="dropdown-menu">
-											<li><a class="dropdown-item"
-											       href="{% url 'update-department' department.pk %}">Update</a></li>
-											<li><a class="dropdown-item"
-											       href="{% url 'delete-department' department.pk %}">Delete</a></li>
-											<li><a class="dropdown-item"
-											       href="{% url 'detail-department' department.pk %}">Details</a></li>
-										</ul>
+								{#								<td>{{ department.description }}</td>#}
+
+								<td>    <!-- Action Buttons -->
+									<div class="btn-group" role="group">
+										<a href="{% url 'update-department' department.id %}" class="btn btn-warning"
+										   role="button">Update</a>
+										<a href="{% url 'detail-department' department.id %}" class="btn btn-info"
+										   role="button">Details</a>
+										<a href="{% url 'delete-department' department.id %}" class="btn btn-danger"
+										   role="button">Delete</a>
 									</div>
 								</td>
 							</tr>

@@ -10,7 +10,7 @@ class DepartmentCreateView(LoginRequiredMixin, CreateView):
     template_name = 'department/create_department.html'
     model = Department
     form_class = DepartmentCreateForm
-    success_url = reverse_lazy('list_department')
+    success_url = reverse_lazy('list-department')
 
 
 class DepartmentListView(LoginRequiredMixin, ListView):
@@ -32,13 +32,13 @@ class DepartmentUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'department/update_department.html'
     model = Department
     form_class = DepartmentUpdateForm
-    success_url = reverse_lazy('list_department')
+    success_url = reverse_lazy('list-department')
 
 
 class DepartmentDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'department/delete_department.html'
     model = Department
-    success_url = reverse_lazy('list_department')
+    success_url = reverse_lazy('list-department')
 
 
 class DepartmentDetailView(LoginRequiredMixin, DetailView):

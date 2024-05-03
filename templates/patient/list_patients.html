@@ -3,82 +3,77 @@
 {% block title %} List of Patients {% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2 gy-3">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="text-center mb-0">Filters</h3>
-                    </div>
-                    <form method="get" class="p-2">
-                        <div class="card-body">
-                            {{ filters }}
-                        </div>
-                        <div class="card-footer text-center">
-                            <button type="submit" class="btn btn-success">Search</button>
-                            <a href="{% url 'list-patient' %}" class="btn btn-danger ml-2">Reset</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2 gy-3">
+				<div class="card">
+					<div class="card-header bg-primary text-white">
+						<h3 class="text-center mb-0">Filters</h3>
+					</div>
+					<form method="get" class="p-2">
+						<div class="card-body">
+							{{ filters }}
+						</div>
+						<div class="card-footer text-center">
+							<button type="submit" class="btn btn-success">Search</button>
+							<a href="{% url 'list-patient' %}" class="btn btn-danger ml-2">Reset</a>
+						</div>
+					</form>
+				</div>
+			</div>
 
-            <div class="col-md-10 gy-2">
-                {% if all_patients %}
-                    <table class="table table-striped mt-3">
-                        <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Profile Picture</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Address</th>
-                            <th>Mobile</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for patient in all_patients %}
-                            <tr>
-                                <td>{{ forloop.counter }}</td>
-                                <td>
-                                    {% if patient.profile_pic %}
-                                        <img src="{{ patient.profile_pic.url }}" alt="Profile Picture" width="60"
-                                             height="60">
-                                    {% else %}
-                                        <img src="{% static 'images/img.png' %}" alt="Profile Picture" width="60"
-                                             height="60">
-                                    {% endif %}
-                                </td>
-                                <td>{{ patient.user.first_name }}</td>
-                                <td>{{ patient.user.last_name }}</td>
-                                <td>{{ patient.user.email }}</td>
-                                <td>{{ patient.address }}</td>
-                                <td>{{ patient.mobile }}</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                            More actions
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item"
-                                                   href={% url 'update-patient' patient.id %}>Update</a></li>
-                                            <li><a class="dropdown-item"
-                                                   href="{% url 'delete-patient' patient.id %}">Delete</a></li>
-                                            <li><a class="dropdown-item"
-                                                   href={% url 'detail-patient' patient.id %}>Details</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                {% else %}
-                    <p>No patients found.</p>
-                {% endif %}
-            </div>
-        </div>
-    </div>
+			<div class="col-md-10 gy-2">
+				{% if all_patients %}
+					<table class="table table-striped mt-3">
+						<thead>
+						<tr>
+							<th>No.</th>
+							<th>Profile Picture</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Address</th>
+							<th>Mobile</th>
+							<th>Actions</th>
+						</tr>
+						</thead>
+						<tbody>
+						{% for patient in all_patients %}
+							<tr>
+								<td>{{ forloop.counter }}</td>
+								<td>
+									{% if patient.profile_pic %}
+										<img src="{{ patient.profile_pic.url }}" alt="Profile Picture" width="60"
+										     height="60">
+									{% else %}
+										<img src="{% static 'images/img.png' %}" alt="Profile Picture" width="60"
+										     height="60">
+									{% endif %}
+								</td>
+								<td>{{ patient.user.first_name }}</td>
+								<td>{{ patient.user.last_name }}</td>
+								<td>{{ patient.user.email }}</td>
+								<td>{{ patient.address }}</td>
+								<td>{{ patient.mobile }}</td>
+							
+								<td>    <!-- Action Buttons -->
+									<div class="btn-group" role="group">
+										<a href="{% url 'update-patient' patient.id %}" class="btn btn-warning"
+										   role="button">Update</a>
+										<a href="{% url 'detail-patient' patient.id %}" class="btn btn-info"
+										   role="button">Details</a>
+										<a href="{% url 'delete-patient' patient.id %}" class="btn btn-danger"
+										   role="button">Delete</a>
+									</div>
+								</td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				{% else %}
+					<p>No patients found.</p>
+				{% endif %}
+			</div>
+		</div>
+	</div>
 {% endblock %}

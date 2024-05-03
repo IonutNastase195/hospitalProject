@@ -63,7 +63,6 @@ class DoctorUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('list-doctor')
 
 
-@login_required
 def doctor_register_view(request):
     doctor_form = DoctorCreateForm()
     user_form = CustomUserCreationForm()
@@ -118,7 +117,7 @@ def doctor_schedule(doctor):
 
     header_col = []
     start_hour = 9
-    end_hour = 17
+    end_hour = 20
     for index, i in enumerate(range(start_hour, end_hour + 1)):
         header_col.append({
             'value': f'{i}:00',
@@ -132,17 +131,13 @@ def doctor_schedule(doctor):
         doctor_schedules_for_day = doctor_schedules.filter(datetime_from__date=current_day,
                                                            datetime_to__date=current_day)
         last_bottom = 0
-        print(appointments_for_day)
         for a in appointments_for_day:
             a.height = int((a.datetime_to - a.datetime_from).total_seconds() / 3600 * PX_PER_HOUR)
-            # a.top =
             a.top = int(abs(a.datetime_from - timezone.datetime(a.datetime_from.year, a.datetime_from.month,
                                                                 a.datetime_from.day, hour=start_hour,
                                                                 tzinfo=zoneinfo.ZoneInfo(
                                                                     settings.TIME_ZONE))).total_seconds() / 3600 * PX_PER_HOUR) - last_bottom
             last_bottom += a.height + a.top
-            print(
-                f'appointment {a.datetime_from}-{a.datetime_to} top={a.top} height={a.height}, new_bottom={last_bottom}')
             a.top += 17
         calendar_data[current_day]['appointments'] = appointments_for_day
         calendar_data[current_day]['doctor_schedules'] = doctor_schedules_for_day
