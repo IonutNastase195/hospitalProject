@@ -5,6 +5,8 @@ from django.forms import TextInput, ClearableFileInput
 
 from patient.models import Patient
 
+from django import forms
+
 
 class PatientForm(forms.ModelForm):
     class Meta:
@@ -12,10 +14,16 @@ class PatientForm(forms.ModelForm):
         exclude = ['user', 'active']
         fields = '__all__'
         widgets = {
-            'address': TextInput(attrs={'placeholder': 'Enter your address', 'class': 'form-control'}),
-            'mobile': TextInput(attrs={'placeholder': 'Enter your mobile number', 'class': 'form-control'}),
-            'profile_pic': forms.ClearableFileInput(attrs={'class': 'form-control'})
+            'address': forms.TextInput(attrs={'placeholder': 'Enter your address', 'class': 'form-control'}),
+            'mobile': forms.TextInput(attrs={'placeholder': 'Enter your mobile number', 'class': 'form-control'}),
+            'profile_pic': forms.FileInput(attrs={'class': 'form-control'})
         }
+
+    def clean_mobile(self):
+        mobile = self.cleaned_data.get('mobile')
+        if not mobile.isdigit() or len(mobile) != 10:
+            raise forms.ValidationError("Invalid mobile number format")
+        return mobile
 
 
 class CustomUserCreationForm(UserCreationForm):

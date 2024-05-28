@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.db import transaction
 from django.db.models.functions import datetime
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -84,8 +85,9 @@ def update_patient_view(request, pk):
         user_update_form = CustomUserUpdateForm(request.POST, instance=user)
 
         if patient_form.is_valid() and user_update_form.is_valid():
-            patient_form.save()
-            user_update_form.save()
+            with transaction.atomic():
+                patient_form.save()
+                user_update_form.save()
             return redirect('list-patient')
     else:
         patient_form = PatientForm(instance=patient)

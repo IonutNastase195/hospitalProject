@@ -117,7 +117,7 @@ def doctor_schedule(doctor):
 
     header_col = []
     start_hour = 9
-    end_hour = 20
+    end_hour = 17
     for index, i in enumerate(range(start_hour, end_hour + 1)):
         header_col.append({
             'value': f'{i}:00',
